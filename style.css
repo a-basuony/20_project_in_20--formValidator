@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f4f4f4;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 50%;
+  padding: 28px;
+  box-shadow: 0px 10px 10px #797878;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .container {
+    width: 90%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    width: 60%;
+  }
+}
+
+.container h1 {
+  margin: 15px 0 35px;
+}
+
+.form_control {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form_control input {
+  padding: 8px 12px;
+  margin-top: 8px;
+  margin-bottom: 3px;
+}
+
+.form_control small {
+  display: block;
+  color: red;
+  margin-bottom: 18px;
+  visibility: hidden;
+}
+
+.form_control.error small {
+  visibility: visible;
+}
+
+.form_control.error input {
+  border: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.237);
+}
+
+.form_control.success input {
+  border: 1px solid rgb(23, 235, 23);
+}
+
+.disabled {
+  border: 1px solid red;
+  background-color: rgba(226, 16, 16, 0.437);
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  background-color: rgba(226, 16, 16, 0.437);
+}
+
+button {
+  width: 100%;
+  cursor: pointer;
+  background-color: #2b9acd;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 8px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3d82a4;
+}
