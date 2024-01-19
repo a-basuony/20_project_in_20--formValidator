@@ -12,7 +12,7 @@ function showError(input, message) {
   small.innerText = message;
 }
 
-//showSuccess if the inputs required
+//showSuccess outline
 function showSuccess(input) {
   let formControl = input.parentElement;
   formControl.className = "form_control success";
