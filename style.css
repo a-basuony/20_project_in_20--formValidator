@@ -73,7 +73,7 @@ body {
 
 .disabled {
   border: 1px solid red;
-  background-color: rgba(226, 16, 16, 0.437);
+  background-color: rgba(226, 16, 16, 0.95);
   cursor: not-allowed;
 }
 

@@ -10,6 +10,8 @@ function showError(input, message) {
   formControl.className = "form_control error";
   let small = formControl.querySelector("small");
   small.innerText = message;
+  let button = document.querySelector("button");
+  button.className = "disabled";
 }
 
 //showSuccess outline
@@ -33,44 +35,55 @@ function getFieldName(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
-// form submit event
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  if (userNameInput.value.trim() === "") {
-    showError(userNameInput, "Username is required");
+function checkLength(input, min, max) {
+  if (input.value.length > max) {
+    showError(
+      input,
+      `${getFieldName(input)} must be less than ${max} characters`
+    );
+  } else if (input.value.length < min) {
+    showError(
+      input,
+      `${getFieldName(input)} must be at least ${min} characters`
+    );
   } else {
     showSuccess(userNameInput);
   }
+}
 
+// if (
+//   passwordInput.value.length >= 5 &&
+//   passwordInput.value.length <= 16 &&
+//   passwordInput.value.trim() !== ""
+// ) {
+//   showSuccess(passwordInput);
+// } else {
+//   showError(
+//     passwordInput,
+//     "Password must be between 8 and 16 characters long."
+//   );
+// }
+
+function checkEmail(input) {
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (emailRegex.test(emailInput.value)) {
     showSuccess(emailInput);
   } else {
     showError(emailInput, "Email is invalid");
   }
+}
 
-  if (
-    passwordInput.value.length >= 5 &&
-    passwordInput.value.length <= 16 &&
-    passwordInput.value.trim() !== ""
-  ) {
-    showSuccess(passwordInput);
+function checkPasswordsMatch(input1, input2) {
+  if (input1.value === input2.value && input1.value.trim() !== "") {
+    showSuccess(input1);
   } else {
-    showError(
-      passwordInput,
-      "Password must be between 8 and 16 characters long."
-    );
+    showError(input1, "Passwords do not match");
   }
+}
 
-  if (
-    confirmPasswordInput.value === passwordInput.value &&
-    confirmPasswordInput.value.trim() !== ""
-  ) {
-    showSuccess(confirmPasswordInput);
-  } else {
-    showError(confirmPasswordInput, "Passwords do not match");
-  }
+// form submit event
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
   checkRequired([
     userNameInput,
@@ -78,6 +91,11 @@ form.addEventListener("submit", function (e) {
     passwordInput,
     confirmPasswordInput,
   ]);
+
+  checkLength(userNameInput, 3, 15);
+  checkLength(passwordInput, 6, 25);
+  checkEmail(emailInput);
+  checkPasswordsMatch(confirmPasswordInput, passwordInput);
 
   console.log(userNameInput.value);
   console.log(emailInput.value);
