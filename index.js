@@ -18,6 +18,21 @@ function showSuccess(input) {
   formControl.className = "form_control success";
 }
 
+//check required fields
+function checkRequired(inputArr) {
+  inputArr.forEach((input) => {
+    if (input.value !== "") {
+      showSuccess(input);
+    } else {
+      showError(input, `${getFieldName(input)} is required!`);
+    }
+  });
+}
+
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
 // form submit event
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -56,6 +71,13 @@ form.addEventListener("submit", function (e) {
   } else {
     showError(confirmPasswordInput, "Passwords do not match");
   }
+
+  checkRequired([
+    userNameInput,
+    emailInput,
+    passwordInput,
+    confirmPasswordInput,
+  ]);
 
   console.log(userNameInput.value);
   console.log(emailInput.value);
