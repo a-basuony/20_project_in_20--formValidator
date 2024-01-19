@@ -51,19 +51,6 @@ function checkLength(input, min, max) {
   }
 }
 
-// if (
-//   passwordInput.value.length >= 5 &&
-//   passwordInput.value.length <= 16 &&
-//   passwordInput.value.trim() !== ""
-// ) {
-//   showSuccess(passwordInput);
-// } else {
-//   showError(
-//     passwordInput,
-//     "Password must be between 8 and 16 characters long."
-//   );
-// }
-
 function checkEmail(input) {
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (emailRegex.test(emailInput.value)) {
@@ -96,11 +83,6 @@ form.addEventListener("submit", function (e) {
   checkLength(passwordInput, 6, 25);
   checkEmail(emailInput);
   checkPasswordsMatch(confirmPasswordInput, passwordInput);
-
-  console.log(userNameInput.value);
-  console.log(emailInput.value);
-  console.log(passwordInput.value);
-  console.log(confirmPasswordInput.value);
 
   userNameInput.value = "";
   emailInput.value = "";
